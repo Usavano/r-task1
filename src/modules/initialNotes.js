@@ -4,14 +4,14 @@ const initialNotes = [
     date: new Date(2021, 4, 20),
     category: 'task',
     content: 'tomatoes, bread',
-    innerDates: null,
+    archiveStatus: false,
   },
   {
     name: 'The theory of evolution',
     date: new Date(2021, 4, 27),
     category: 'random thought',
     content: 'the evolution is great idea',
-    innerDates: null,
+    archiveStatus: false,
   },
   {
     name: 'New Feature',
@@ -19,21 +19,21 @@ const initialNotes = [
     category: 'idea',
     content:
       'Implement new feature on the 3/5/2021, and second feature on the 5/5/2021',
-    innerDates: null,
+    archiveStatus: false,
   },
   {
     name: 'Check homework',
     date: new Date(2021, 5, 7),
     category: 'task',
     content: 'Do my homework',
-    innerDates: null,
+    archiveStatus: false,
   },
   {
     name: 'Books',
     date: new Date(2021, 5, 15),
     category: 'task',
     content: 'The Lean Startup',
-    innerDates: null,
+    archiveStatus: false,
   },
 ];
 

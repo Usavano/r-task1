@@ -152,10 +152,16 @@ thead {
 }
 
 thead th:first-child {
+  width: 16rem;
   border-radius: var(--radius) 0 0 var(--radius);
 }
 
+thead th:nth-child(4) {
+  width: 15rem;
+}
+
 thead th:last-child {
+  width: 6rem;
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
@@ -176,11 +182,15 @@ tbody > tr {
 }
 
 tbody td {
-  padding: 0.8rem;
+  padding: 1rem;
 }
 
 tbody td:first-child {
   border-radius: var(--radius) 0 0 var(--radius);
+}
+
+tbody td:nth-child(3) {
+  text-transform: capitalize;
 }
 
 tbody td:last-child {
@@ -223,4 +233,12 @@ tbody td:last-child {
 }
 .btnArchive > i:hover {
   color: blue;
+}
+
+.tableStatistic thead th {
+  width: 33.33%;
+}
+
+.categoryName {
+  text-transform: capitalize;
 }
