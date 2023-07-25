@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+    <link rel="stylesheet" href="src/styles/styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <div class="tableMain">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Category</th>
+                <th>Content</th>
+                <th>Dates</th>
+                <!-- will change to icons -->
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="notesContainer"></tbody>
+          </table>
+        </div>
+        <div class="btns-container">
+          <button class="btn">Create note</button>
+        </div>
+        <div class="tableStatistic">
+          <table>
+            <thead>
+              <tr>
+                <th>Note Category</th>
+                <th>Active</th>
+                <th>Archived</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="category">
+                <td class="categoryName">Task</td>
+                <td class="categoryActives">13</td>
+                <td class="categoryArchived">4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/fa66398b2b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

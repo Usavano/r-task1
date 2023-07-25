@@ -1,0 +1,226 @@
+/*
+=============== 
+Fonts
+===============
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/*
+/*
+=============== 
+Null Style
+===============
+*/
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+button {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/*
+  =============== 
+  Variables
+  ===============
+  */
+:root {
+  --clr-dark-grey: #353535;
+  --clr-grey: rgb(157, 157, 157);
+  --clr-light-grey: rgb(220, 220, 220);
+  --clr-light-purple: #e7e5ff;
+  --clr-white: #fff;
+  --ff-primary: 'Roboto', sans-serif;
+  --transition: all 0.3s linear;
+  --spacing: 0.25rem;
+  --radius: 5px;
+  --circle-radius: 50%;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  --max-width: 1170px;
+}
+
+/*
+  =============== 
+  Global Styles
+  ===============
+  */
+body {
+  font-family: var(--ff-primary);
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: capitalize;
+  line-height: 1.25;
+  color: var(--clr-black);
+}
+
+h1 {
+  font-size: 2.7rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 0.875rem;
+}
+
+.wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.btn {
+  width: 8rem;
+  background-color: var(--clr-light-grey);
+  border: 1px solid var(--clr-dark-grey);
+  border-radius: var(--radius);
+  padding: 0.2rem;
+}
+
+.btns-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 0 3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.8rem;
+}
+
+thead {
+  background-color: var(--clr-grey);
+  color: var(--clr-white);
+}
+
+thead th:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+thead th:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+th {
+  text-align: left;
+  font-size: 1.2rem;
+  padding: 0.8rem 1rem;
+}
+
+tbody {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+tbody > tr {
+  background-color: var(--clr-light-purple);
+  color: var(--clr-dark-grey);
+}
+
+tbody td {
+  padding: 0.8rem;
+}
+
+tbody td:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+tbody td:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/*
+  =============== 
+  Main Styles
+  ===============
+*/
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 0 6rem;
+}
+
+.noteActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+:is(.btnArchive, .btnDelete, .btnEdit) > i {
+  transition: var(--transition);
+  color: #545454;
+}
+:is(.btnArchive, .btnDelete, .btnEdit) > i:hover {
+  transform: scale(1.05);
+}
+
+.btnDelete > i:hover {
+  color: red;
+}
+.btnEdit > i:hover {
+  color: green;
+}
+.btnArchive > i:hover {
+  color: blue;
+}
