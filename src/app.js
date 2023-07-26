@@ -14,13 +14,15 @@ import {
 
 // ******VARIABLES****** //
 let notesArray = [...initialNotes];
+let notesAchivedArray = [];
+let generalNotesArray = [];
 let statArray = createStatArray(notesArray);
 const queryMainTable = 'notesContainer';
 const queryStatTable = 'statisticContainer';
 const createNoteBtn = document.querySelector('.createNoteBtn');
 const popUpWinEdit = document.querySelector('.popUpWin-edit');
 const editFormBtn = popUpWinEdit.querySelector('.editForm-btn');
-let currentElementKey = null;
+let currentEditableElementKey = null;
 
 // appoint keys to notes
 notesArray.forEach((note) => (note.key = generate5Key()));
@@ -89,6 +91,10 @@ function createNote(noteObj) {
   editBtn.addEventListener('click', (event) => {
     openEditPopUp(event);
   });
+  const archiveBtn = noteElement.querySelector('.btnArchive');
+  archiveBtn.addEventListener('click', (event) => {
+    archiveNote(event);
+  });
 
   return noteElement;
 }
@@ -120,12 +126,19 @@ function renderData(qContainer, data, createFn) {
 function deleteNote(e) {
   const parent = e.currentTarget.parentElement.parentElement;
   const parentKey = parent.getAttribute('data-key');
+
   const newNotesArray = notesArray.filter(
     (note) => note.key !== parseInt(parentKey)
   );
-
   notesArray = newNotesArray;
-  statArray = createStatArray(notesArray);
+
+  generalNotesArray = generalNotesArray.filter(
+    (note) => note.key !== parseInt(parentKey)
+  );
+  statArray =
+    generalNotesArray.length > 0
+      ? createStatArray(generalNotesArray)
+      : createStatArray(notesArray);
 
   const updateMainTableData = updateDataOnPage(
     notesArray,
@@ -144,16 +157,16 @@ function deleteNote(e) {
 // open Edit Pop Up
 function openEditPopUp(e) {
   const parent = e.currentTarget.parentElement.parentElement;
-  currentElementKey = parent.getAttribute('data-key');
+  currentEditableElementKey = parent.getAttribute('data-key');
 
   popUpWinEdit.classList.add('active');
   const closeBtn = popUpWinEdit.querySelector('.popUpWinEdit-closeBtn');
   closeBtn.addEventListener('click', () => {
-    currentElementKey = null;
+    currentEditableElementKey = null;
     popUpWinEdit.classList.remove('active');
   });
   const certainNote = notesArray.find(
-    (note) => note.key === parseInt(currentElementKey)
+    (note) => note.key === parseInt(currentEditableElementKey)
   );
 
   const inputName = popUpWinEdit.querySelector('.editNameInput');
@@ -182,7 +195,7 @@ function handleEditNote(e) {
   };
 
   notesArray.forEach((note) => {
-    if (note.key === parseInt(currentElementKey)) {
+    if (note.key === parseInt(currentEditableElementKey)) {
       note.name = editNoteData.name;
       note.category = editNoteData.category;
       note.content = editNoteData.content;
@@ -198,6 +211,42 @@ function handleEditNote(e) {
 
   popUpWinEdit.classList.remove('active');
 }
+
+function archiveNote(e) {
+  const parent = e.currentTarget.parentElement.parentElement;
+  const parentKey = parent.getAttribute('data-key');
+  notesArray.forEach((note) => {
+    if (note.key === parseInt(parentKey)) {
+      note.archiveStatus = true;
+    }
+  });
+
+  const notesActiveArray = notesArray.filter((note) => {
+    if (!note.archiveStatus) {
+      return note;
+    } else {
+      notesAchivedArray.push(note);
+    }
+  });
+  notesArray = notesActiveArray;
+  const updateMainTableData = updateDataOnPage(
+    notesArray,
+    queryMainTable,
+    createNote
+  );
+  updateMainTableData();
+
+  generalNotesArray = notesArray.concat(notesAchivedArray);
+  statArray = createStatArray(generalNotesArray);
+  const updateStatTableData = updateDataOnPage(
+    statArray,
+    queryStatTable,
+    createStatRow
+  );
+  updateStatTableData();
+  console.log(notesAchivedArray);
+}
+
 // handle create Note
 async function handleCreateNote() {
   nullInputs();
