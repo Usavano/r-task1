@@ -1,4 +1,4 @@
-// import modules
+// ******IMPORTS****** //
 import initialNotes from './modules/initialNotes.js';
 import generate5Key from './modules/generateKey.js';
 import months from './modules/monthesStorage.js';
@@ -18,6 +18,9 @@ let statArray = createStatArray(notesArray);
 const queryMainTable = 'notesContainer';
 const queryStatTable = 'statisticContainer';
 const createNoteBtn = document.querySelector('.createNoteBtn');
+const popUpWinEdit = document.querySelector('.popUpWin-edit');
+const editFormBtn = popUpWinEdit.querySelector('.editForm-btn');
+let currentElementKey = null;
 
 // appoint keys to notes
 notesArray.forEach((note) => (note.key = generate5Key()));
@@ -31,7 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderStats();
 });
 createNoteBtn.addEventListener('click', () => {
-  handleCreateNoteBtnClick();
+  handleCreateNote();
+});
+editFormBtn.addEventListener('click', (event) => {
+  handleEditNote(event);
 });
 
 // ******FUNCTIONS****** //
@@ -79,6 +85,10 @@ function createNote(noteObj) {
   deleteBtn.addEventListener('click', (event) => {
     deleteNote(event);
   });
+  const editBtn = noteElement.querySelector('.btnEdit');
+  editBtn.addEventListener('click', (event) => {
+    openEditPopUp(event);
+  });
 
   return noteElement;
 }
@@ -96,7 +106,6 @@ function createStatRow(categoryObj) {
 
   return statEl;
 }
-
 // rendering data
 function renderData(qContainer, data, createFn) {
   return () => {
@@ -107,7 +116,6 @@ function renderData(qContainer, data, createFn) {
     });
   };
 }
-
 // delete notes
 function deleteNote(e) {
   const parent = e.currentTarget.parentElement.parentElement;
@@ -133,21 +141,65 @@ function deleteNote(e) {
   );
   updateStatTableData();
 }
+// open Edit Pop Up
+function openEditPopUp(e) {
+  const parent = e.currentTarget.parentElement.parentElement;
+  currentElementKey = parent.getAttribute('data-key');
 
-// update all data on page
-function updateDataOnPage(data, queryContainer, createFn) {
-  return () => {
-    const tableContainer = document.querySelector(`.${queryContainer}`);
-    tableContainer.innerHTML = '';
+  popUpWinEdit.classList.add('active');
+  const closeBtn = popUpWinEdit.querySelector('.popUpWinEdit-closeBtn');
+  closeBtn.addEventListener('click', () => {
+    currentElementKey = null;
+    popUpWinEdit.classList.remove('active');
+  });
+  const certainNote = notesArray.find(
+    (note) => note.key === parseInt(currentElementKey)
+  );
 
-    data.forEach((item) => {
-      renderElement(tableContainer, item, createFn);
-    });
-  };
+  const inputName = popUpWinEdit.querySelector('.editNameInput');
+  const selectCategory = popUpWinEdit.querySelector('.editCategoryList');
+  const textContent = popUpWinEdit.querySelector('.editContentArea');
+
+  inputName.value = certainNote.name;
+  selectCategory.value = certainNote.category;
+  textContent.value = certainNote.content;
 }
+// handle edit Note
+function handleEditNote(e) {
+  e.preventDefault();
+  const inputName = popUpWinEdit.querySelector('.editNameInput');
+  const selectCategory = popUpWinEdit.querySelector('.editCategoryList');
+  const textContent = popUpWinEdit.querySelector('.editContentArea');
 
-// handle create Note Button click
-async function handleCreateNoteBtnClick() {
+  const inputNameVal = inputName.value;
+  const selectCategoryVal = selectCategory.value;
+  const textContentVal = textContent.value;
+
+  const editNoteData = {
+    name: inputNameVal,
+    category: selectCategoryVal,
+    content: textContentVal,
+  };
+
+  notesArray.forEach((note) => {
+    if (note.key === parseInt(currentElementKey)) {
+      note.name = editNoteData.name;
+      note.category = editNoteData.category;
+      note.content = editNoteData.content;
+    }
+  });
+
+  const updateMainTableData = updateDataOnPage(
+    notesArray,
+    queryMainTable,
+    createNote
+  );
+  updateMainTableData();
+
+  popUpWinEdit.classList.remove('active');
+}
+// handle create Note
+async function handleCreateNote() {
   nullInputs();
   openPopUpWinCreate();
   try {
@@ -173,4 +225,15 @@ async function handleCreateNoteBtnClick() {
   } catch (error) {
     console.error(error);
   }
+}
+// update all data on page
+function updateDataOnPage(data, queryContainer, createFn) {
+  return () => {
+    const tableContainer = document.querySelector(`.${queryContainer}`);
+    tableContainer.innerHTML = '';
+
+    data.forEach((item) => {
+      renderElement(tableContainer, item, createFn);
+    });
+  };
 }

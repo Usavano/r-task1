@@ -244,7 +244,7 @@ tbody td:last-child {
   text-transform: capitalize;
 }
 
-.popUpWin-create {
+.popUpWin-general {
   display: none;
   place-items: center;
   position: fixed;
@@ -255,7 +255,7 @@ tbody td:last-child {
   background: transparent;
 }
 
-.popUpWin-create.active {
+.popUpWin-general.active {
   display: grid;
 }
 
@@ -274,40 +274,45 @@ tbody td:last-child {
   margin: 0 0 1.5rem 0;
 }
 
-.noteCreateForm {
+.popUpWinForm {
   display: flex;
   flex-direction: column;
 }
 
-.noteCreateForm > * {
+.popUpWinForm > * {
   margin: 0 0 0.7rem 0;
 }
 
-.noteCreateForm > label {
+.popUpWinForm > label {
   margin: 0 0 0.5rem 0;
 }
 
-.noteCreateForm :where(input[type='text'], select, textarea) {
+.popUpWinForm :where(input[type='text'], select, textarea) {
   font-family: var(--ff-primary);
   font-size: 1.1rem;
   padding: 0.4rem;
 }
 
-.noteCreateForm-btn {
+.popUpWinForm-btn {
   margin: 0 auto;
 }
 
-.popUpWin-closeBtn {
+.popUpWinEdit-closeBtn,
+.popUpWinCreate-closeBtn {
   position: absolute;
   right: 1rem;
   top: 1rem;
   cursor: pointer;
 }
 
-.popUpWin-closeBtn > i {
+.closeBtn > i {
   transition: var(--transition);
 }
 
-.popUpWin-closeBtn > i:hover {
+.closeBtn > i:hover {
   color: RED;
+}
+
+.popUpWin-edit .popUpWin-body > h2 {
+  color: rgb(0, 195, 0);
 }

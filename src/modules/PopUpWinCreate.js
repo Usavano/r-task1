@@ -3,7 +3,7 @@ const popUpWinCreate = document.querySelector('.popUpWin-create');
 function openPopUpWinCreate() {
   popUpWinCreate.classList.add('active');
 
-  const closeBtn = popUpWinCreate.querySelector('.popUpWin-closeBtn');
+  const closeBtn = popUpWinCreate.querySelector('.popUpWinCreate-closeBtn');
   closeBtn.addEventListener('click', () => {
     popUpWinCreate.classList.remove('active');
   });
@@ -24,7 +24,7 @@ function handlePopUpWinCreate() {
         popUpWinCreate.querySelector('.noteContentArea').value;
       const currentDate = new Date();
 
-      const data = {
+      const newNoteObj = {
         name: inputNameVal,
         date: currentDate,
         category: selectCategoryVal,
@@ -32,8 +32,8 @@ function handlePopUpWinCreate() {
         archiveStatus: false,
       };
 
-      if (inputNameVal && textContentVal && selectCategoryVal) {
-        resolve(data);
+      if (inputNameVal && selectCategoryVal) {
+        resolve(newNoteObj);
         popUpWinCreate.classList.remove('active');
       }
     });

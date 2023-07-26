@@ -43,11 +43,11 @@
           </table>
         </div>
       </div>
-      <div class="popUpWin-create">
+      <div class="popUpWin-create popUpWin-general">
         <div class="popUpWin-container">
           <div class="popUpWin-body">
             <h2>Make a Note!</h2>
-            <form class="noteCreateForm" action="#">
+            <form class="noteCreateForm popUpWinForm" action="#">
               <label for="noteNameInput">Name</label>
               <input type="text" class="noteNameInput" required />
 
@@ -66,11 +66,48 @@
                 cols="30"
                 rows="10"
               ></textarea>
-              <button type="submit" class="noteCreateForm-btn btn">
+              <button
+                type="submit"
+                class="noteCreateForm-btn popUpWinForm-btn btn"
+              >
                 Add Note
               </button>
             </form>
-            <div class="popUpWin-closeBtn">
+            <div class="popUpWinCreate-closeBtn closeBtn">
+              <i class="fa-solid fa-xmark fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="popUpWin-edit popUpWin-general">
+        <div class="popUpWin-container">
+          <div class="popUpWin-body">
+            <h2>Edit a Note!</h2>
+            <form class="noteEditForm popUpWinForm" action="#">
+              <label for="editNameInput">Name</label>
+              <input type="text" class="editNameInput" required />
+
+              <label for="editCategoryList">Category</label>
+              <select name="categoryList" class="editCategoryList" required>
+                <option value="task">Task</option>
+                <option value="idea">Idea</option>
+                <option value="randomThought">Random Thoughts</option>
+              </select>
+
+              <label for="editContentArea">Content</label>
+              <textarea
+                required
+                name="noteContentArea"
+                class="editContentArea"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <button type="submit" class="editForm-btn popUpWinForm-btn btn">
+                Edit note
+              </button>
+            </form>
+            <div class="popUpWinEdit-closeBtn closeBtn">
               <i class="fa-solid fa-xmark fa-lg"></i>
             </div>
           </div>
