@@ -27,7 +27,7 @@
         </div>
 
         <div class="btns-container">
-          <button class="btn">Create note</button>
+          <button class="createNoteBtn btn">Create note</button>
         </div>
 
         <div class="tableStatistic">
@@ -41,6 +41,39 @@
             </thead>
             <tbody class="statisticContainer"></tbody>
           </table>
+        </div>
+      </div>
+      <div class="popUpWin-create">
+        <div class="popUpWin-container">
+          <div class="popUpWin-body">
+            <h2>Make a Note!</h2>
+            <form class="noteCreateForm" action="#">
+              <label for="noteNameInput">Name</label>
+              <input type="text" class="noteNameInput" required />
+
+              <label for="noteCategoryList">Category</label>
+              <select name="categoryList" class="noteCategoryList" required>
+                <option value="task">Task</option>
+                <option value="idea">Idea</option>
+                <option value="randomThought">Random Thoughts</option>
+              </select>
+
+              <label for="noteCategoryList">Content</label>
+              <textarea
+                required
+                name="noteContentArea"
+                class="noteContentArea"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <button type="submit" class="noteCreateForm-btn btn">
+                Add Note
+              </button>
+            </form>
+            <div class="popUpWin-closeBtn">
+              <i class="fa-solid fa-xmark fa-lg"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>

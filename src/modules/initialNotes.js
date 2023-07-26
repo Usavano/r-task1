@@ -9,7 +9,7 @@ const initialNotes = [
   {
     name: 'The theory of evolution',
     date: new Date(2021, 4, 27),
-    category: 'random thought',
+    category: 'randomThought',
     content: 'the evolution is great idea',
     archiveStatus: false,
   },
