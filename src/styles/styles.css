@@ -333,10 +333,6 @@ tbody td:last-child {
   background-color: var(--clr-white);
 }
 
-.infoRow.showInfo {
-  display: block;
-}
-
 .infoRow > td {
   text-align: center;
 }

@@ -11,6 +11,7 @@ import {
   handlePopUpWinCreate,
   nullInputs,
 } from './modules/PopUpWinCreate.js';
+import infoRow from './modules/infoRow.js';
 
 // ******VARIABLES****** //
 let notesArray = [...initialNotes];
@@ -23,14 +24,6 @@ const queryArchiveTable = 'notesArchiveContainer';
 const createNoteBtn = document.querySelector('.createNoteBtn');
 const popUpWinEdit = document.querySelector('.popUpWin-edit');
 const editFormBtn = popUpWinEdit.querySelector('.editForm-btn');
-
-const infoRow = document.createElement('tr');
-infoRow.classList.add('infoRow');
-infoRow.setAttribute('id', 'infoRowId');
-infoRow.innerHTML = `
-<td colspan="6">Theres is no items </td>
-</tr>`;
-
 let currentEditableElementKey = null;
 
 // appoint keys to notes
