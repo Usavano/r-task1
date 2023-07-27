@@ -166,7 +166,7 @@ function renderData(qContainer, data, createFn) {
     const dataContainer = document.querySelector(`.${qContainer}`);
 
     if (data.length === 0) {
-      dataContainer.appendChild(infoRow);
+      dataContainer.appendChild(infoRow.cloneNode(true));
     } else {
       data.forEach((obj) => {
         renderElement(dataContainer, obj, createFn);
@@ -398,7 +398,7 @@ function updateDataOnPage(data, queryContainer, createFn) {
     tableContainer.innerHTML = '';
 
     if (data.length === 0) {
-      tableContainer.appendChild(infoRow);
+      tableContainer.appendChild(infoRow.cloneNode(true));
     } else {
       data.forEach((item) => {
         renderElement(tableContainer, item, createFn);
