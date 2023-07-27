@@ -316,3 +316,27 @@ tbody td:last-child {
 .popUpWin-edit .popUpWin-body > h2 {
   color: rgb(0, 195, 0);
 }
+
+.tableArchives {
+  margin: 0 0 3rem 0;
+}
+
+.td-archive {
+  color: var(--clr-grey);
+}
+
+#infoRowId > td {
+  border: 1px solid var(--clr-dark-grey);
+  border-radius: 0;
+}
+.infoRow {
+  background-color: var(--clr-white);
+}
+
+.infoRow.showInfo {
+  display: block;
+}
+
+.infoRow > td {
+  text-align: center;
+}
